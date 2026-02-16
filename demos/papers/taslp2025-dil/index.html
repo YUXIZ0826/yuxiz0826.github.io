@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TASLP 2025 · DIL Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #111; }
+    .container { max-width: 980px; margin: 0 auto; padding: 28px 18px 60px; }
+    a { color: inherit; }
+
+    .topbar { margin-bottom: 16px; }
+    .topbar a { text-decoration: none; color: #333; }
+    .topbar a:hover { text-decoration: underline; }
+
+    h1 { margin: 10px 0 6px; text-align: center; }
+    .meta { text-align: center; color: #666; margin-bottom: 6px; }
+    .subtitle { text-align: center; color: #555; margin: 0 0 18px; line-height: 1.45; }
+
+    .tabs { display: flex; gap: 8px; justify-content: center; margin: 18px 0 10px; overflow-x: auto; padding-bottom: 6px; }
+    .tab-button { padding: 10px 12px; cursor: pointer; border: 1px solid #ddd; background: #f4f4f4; border-radius: 999px; white-space: nowrap; flex: 0 0 auto; }
+    .tab-button.active { background: #4CAF50; color: white; border-color: #4CAF50; }
+
+    .tab-content { display: none; margin-top: 18px; }
+    .tab-content.active { display: block; }
+
+    .card { border: 1px solid #eee; border-radius: 14px; padding: 16px 14px; margin: 14px 0; background: #fff; }
+    .card h2, .card h3 { margin: 0 0 10px; }
+
+    .hint { color: #666; margin-top: 6px; line-height: 1.45; }
+    .small { font-size: 13px; color: #666; }
+    .badge { display: inline-block; background: #f2f2f2; padding: 4px 10px; border-radius: 999px; font-size: 12px; margin-right: 6px; }
+
+    .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .btn { display: inline-block; padding: 9px 12px; border-radius: 12px; background: #4CAF50; color: white; text-decoration: none; font-size: 14px; }
+    .btn.secondary { background: #eaeaea; color: #111; }
+
+    code { background: #fafafa; border: 1px solid #eee; padding: 2px 6px; border-radius: 8px; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a href="../../index.html">← Back to Demos</a>
+    </div>
+
+    <h1>TASLP 2025 · DIL Demo</h1>
+    <div class="meta">Companion page (audio examples + index download)</div>
+    <p class="subtitle">
+      Tabs correspond to different H1 rooms: <b>H1 = 803 / 508 / 403</b>. Each example will include:
+      Clean, Observed (reverb), WPE/DFN/BuDDy baselines, and DIL variants (Oracle / mismatch settings).
+    </p>
+
+    <div class="tabs">
+      <button class="tab-button active" onclick="openTab('h1_803')">H1 = 803</button>
+      <button class="tab-button" onclick="openTab('h1_508')">H1 = 508</button>
+      <button class="tab-button" onclick="openTab('h1_403')">H1 = 403</button>
+      <button class="tab-button" onclick="openTab('downloads')">Downloads</button>
+    </div>
+
+    <!-- H1=803 -->
+    <div id="h1_803" class="tab-content active">
+      <div class="card">
+        <h2>H1 = 803</h2>
+        <div>
+          <span class="badge">clean</span>
+          <span class="badge">observed</span>
+          <span class="badge">wpe</span>
+          <span class="badge">dfn</span>
+          <span class="badge">buddy</span>
+          <span class="badge">dil_oracle</span>
+          <span class="badge">dil_mismatch1</span>
+          <span class="badge">dil_mismatch2</span>
+        </div>
+        <p class="hint">
+          <b>Status:</b> Upload in progress. Representative audio examples will be added/updated here.
+        </p>
+        <p class="small">
+          DIL mismatch-1: H2 is chosen from remaining RIRs in the same room as H1.<br/>
+          DIL mismatch-2: H2 is chosen from a different room than H1.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Example placeholder</h3>
+        <p class="hint">
+          Audio files will follow the naming convention (example):
+          <code>ieee02f05.wav</code>, <code>ieee02f05_reverb.wav</code>, <code>ieee02f05_wpe.wav</code>, <code>ieee02f05_dfn.wav</code>,
+          <code>ieee02f05_buddy.wav</code>, <code>ieee02f05_dil_oracle.wav</code>, <code>ieee02f05_dil_mismatch1.wav</code>,
+          <code>ieee02f05_dil_mismatch2.wav</code>.
+        </p>
+      </div>
+    </div>
+
+    <!-- H1=508 -->
+    <div id="h1_508" class="tab-content">
+      <div class="card">
+        <h2>H1 = 508</h2>
+        <p class="hint">
+          <b>Status:</b> Upload in progress. Representative audio examples will be added/updated here.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Example placeholder</h3>
+        <p class="hint">
+          Audio will be organized by H1 room tabs and trial folders, and follow the same suffix rules as H1=803.
+        </p>
+      </div>
+    </div>
+
+    <!-- H1=403 -->
+    <div id="h1_403" class="tab-content">
+      <div class="card">
+        <h2>H1 = 403</h2>
+        <p class="hint">
+          <b>Status:</b> Upload in progress. Representative audio examples will be added/updated here.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Example placeholder</h3>
+        <p class="hint">
+          Same track set as H1=803 and H1=508.
+        </p>
+      </div>
+    </div>
+
+    <!-- Downloads -->
+    <div id="downloads" class="tab-content">
+      <div class="card">
+        <h2>Downloads</h2>
+        <p class="hint">
+          The full index list and metadata used in the paper will be provided here.
+        </p>
+
+        <div class="btnrow">
+          <!-- 你后面把 h1_index.npy 上传到同目录，这个按钮就立刻可用 -->
+          <a class="btn" href="./h1_index.npy" download>Download H1 index (.npy)</a>
+
+          <!-- 你以后有代码仓库就把 # 换成真实链接 -->
+          <a class="btn secondary" href="#" target="_blank" rel="noopener">Code (GitHub)</a>
+        </div>
+
+        <p class="small" style="margin-top: 10px;">
+          If the index file is not available yet, this link may return 404 temporarily and will be updated soon.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openTab(tabId) {
+      document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
+      document.getElementById(tabId).classList.add("active");
+      const btn = Array.from(document.querySelectorAll(".tab-button"))
+        .find(b => b.getAttribute("onclick") === `openTab('${tabId}')`);
+      if (btn) btn.classList.add("active");
+    }
+  </script>
+</body>
+</html>
