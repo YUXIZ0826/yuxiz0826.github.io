@@ -1,186 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech Dereverberation Demo</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .tabs { display: flex; justify-content: center; margin-bottom: 20px; }
-        .tab-button { padding: 10px; cursor: pointer; border: none; background: #ddd; margin: 0 5px; }
-        .tab-button.active { background: #4CAF50; color: white; }
-        .tab-content { display: none; margin-top: 20px; }
-        .tab-content.active { display: block; }
-        .sample { margin-bottom: 30px; }
-        .player-label { font-weight: bold; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demos</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #111;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .topbar {
+      margin-bottom: 20px;
+    }
+
+    .topbar a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .topbar a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid #eee;
+      border-radius: 16px;
+      padding: 20px;
+      transition: 0.2s ease;
+      background: #fff;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .meta {
+      color: #666;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .tags span {
+      display: inline-block;
+      background: #f2f2f2;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 6px;
+      font-size: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      background: #4CAF50;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      background: #45a049;
+    }
+
+    .coming-soon {
+      color: #999;
+      font-style: italic;
+      margin-top: 10px;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Speech Dereverberation Demo</h1>
-    <p>Each T60 contains three representative samples with four versions: Reverberant, WPE, DIL (Oracle), and DIL (Realistic).</p>
+  <div class="container">
 
-    <!-- 切换 T60 的按钮 -->
-    <div class="tabs">
-        <button class="tab-button active" onclick="openTab('T60_204')">T60 = 204 ms</button>
-        <button class="tab-button" onclick="openTab('T60_513')">T60 = 513 ms</button>
-        <button class="tab-button" onclick="openTab('T60_972')">T60 = 972 ms</button>
+    <div class="topbar">
+      <a href="../index.html">← Back to Home</a>
     </div>
 
-    <!-- T60 = 204 ms -->
-    <div id="T60_204" class="tab-content active">
-        <h2>T60 = 204 ms</h2>
-        <div class="sample">
-            <h3>Sample: ieee01f01</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_204/ieee01f01.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_204/ieee01f01_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_204/ieee01f01_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_204/ieee01f01_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_204/ieee01f01_DIL.wav" type="audio/wav"></audio>
+    <h1>Demos</h1>
+    <p class="subtitle">
+      Audio examples and companion materials grouped by paper.
+    </p>
+
+    <div class="grid">
+
+      <!-- ===== EUSIPCO Paper ===== -->
+      <div class="card">
+        <h2>Speech Dereverberation</h2>
+        <div class="meta">EUSIPCO 2024 · Speech Processing</div>
+
+        <div class="tags">
+          <span>dereverberation</span>
+          <span>audio examples</span>
+          <span>T60 analysis</span>
         </div>
-        <div class="sample">
-            <h3>Sample: ieee03f02</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_204/ieee03f02.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_204/ieee03f02_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_204/ieee03f02_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_204/ieee03f02_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_204/ieee03f02_DIL.wav" type="audio/wav"></audio>
+
+        <a class="btn" href="./papers/eusipco2024-dereverb/">
+          Open Demo
+        </a>
+      </div>
+
+      <!-- ===== Future Paper Placeholder ===== -->
+      <div class="card">
+        <h2>Journal Paper (Coming Soon)</h2>
+        <div class="meta">Journal 2025</div>
+
+        <div class="coming-soon">
+          Companion audio examples will be available soon.
         </div>
-        <div class="sample">
-            <h3>Sample: ieee52m02</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_204/ieee52m02.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_204/ieee52m02_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_204/ieee52m02_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_204/ieee52m02_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_204/ieee52m02_DIL.wav" type="audio/wav"></audio>
-        </div>
+      </div>
+
     </div>
-
-    <!-- T60 = 513 ms -->
-    <div id="T60_513" class="tab-content">
-        <h2>T60 = 513 ms</h2>
-                <div class="sample">
-            <h3>Sample: ieee01f01</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_513/ieee01f01.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_513/ieee01f01_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_513/ieee01f01_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_513/ieee01f01_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_513/ieee01f01_DIL.wav" type="audio/wav"></audio>
-        </div>
-        <div class="sample">
-            <h3>Sample: ieee03f02</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_513/ieee03f02.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_513/ieee03f02_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_513/ieee03f02_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_513/ieee03f02_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_513/ieee03f02_DIL.wav" type="audio/wav"></audio>
-        </div>
-        <div class="sample">
-            <h3>Sample: ieee52m02</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_513/ieee52m02.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_513/ieee52m02_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_513/ieee52m02_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_513/ieee52m02_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_513/ieee52m02_DIL.wav" type="audio/wav"></audio>
-        </div>
-    </div>
-
-    <!-- T60 = 972 ms -->
-    <div id="T60_972" class="tab-content">
-        <h2>T60 = 972 ms</h2>
-        <div class="sample">
-            <h3>Sample: ieee01f01</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_972/ieee01f01.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_972/ieee01f01_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_972/ieee01f01_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_972/ieee01f01_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_972/ieee01f01_DIL.wav" type="audio/wav"></audio>
-        </div>
-        <div class="sample">
-            <h3>Sample: ieee03f02</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_972/ieee03f02.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_972/ieee03f02_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_972/ieee03f02_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_972/ieee03f02_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_972/ieee03f02_DIL.wav" type="audio/wav"></audio>
-        </div>
-        <div class="sample">
-            <h3>Sample: ieee52m02</h3>
-            <p class="player-label">Anechoic</p>
-            <audio controls><source src="../audio/T60_972/ieee52m02.wav" type="audio/wav"></audio>
-            <p class="player-label">Observed</p>
-            <audio controls><source src="../audio/T60_972/ieee52m02_observed.wav" type="audio/wav"></audio>
-            <p class="player-label">WPE</p>
-            <audio controls><source src="../audio/T60_972/ieee52m02_WPE.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Oracle)</p>
-            <audio controls><source src="../audio/T60_972/ieee52m02_DIL_O.wav" type="audio/wav"></audio>
-            <p class="player-label">DIL (Realistic H<sub>2</sub> &ne; H<sub>1</sub>)</p>
-            <audio controls><source src="../audio/T60_972/ieee52m02_DIL.wav" type="audio/wav"></audio>
-        </div>
-    </div>
-
-        <script>
-        function openTab(tabId) {
-            // 停止所有正在播放的音频
-            document.querySelectorAll("audio").forEach(audio => {
-                audio.pause();
-                audio.currentTime = 0;
-            });
-
-            // 隐藏所有 tab-content
-            document.querySelectorAll(".tab-content").forEach(tab => {
-                tab.classList.remove("active");
-            });
-
-            // 移除所有按钮的 active 状态
-            document.querySelectorAll(".tab-button").forEach(button => {
-                button.classList.remove("active");
-            });
-
-            // 显示点击的 tab
-            document.getElementById(tabId).classList.add("active");
-            document.querySelector(`[onclick="openTab('${tabId}')"]`).classList.add("active");
-        }
-    </script>
+  </div>
 </body>
 </html>
-
