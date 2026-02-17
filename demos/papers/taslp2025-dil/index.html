@@ -27,15 +27,23 @@
     .card { border: 1px solid #eee; border-radius: 14px; padding: 16px 14px; margin: 14px 0; background: #fff; }
     .card h2, .card h3 { margin: 0 0 10px; }
 
+    .row { display: grid; grid-template-columns: 230px 1fr; gap: 12px; align-items: center; margin: 10px 0; }
+    .label { font-weight: bold; text-align: left; color: #222; }
+    audio { width: 100%; }
+
     .hint { color: #666; margin-top: 6px; line-height: 1.45; }
     .small { font-size: 13px; color: #666; }
-    .badge { display: inline-block; background: #f2f2f2; padding: 4px 10px; border-radius: 999px; font-size: 12px; margin-right: 6px; }
 
     .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
     .btn { display: inline-block; padding: 9px 12px; border-radius: 12px; background: #4CAF50; color: white; text-decoration: none; font-size: 14px; }
     .btn.secondary { background: #eaeaea; color: #111; }
 
     code { background: #fafafa; border: 1px solid #eee; padding: 2px 6px; border-radius: 8px; }
+
+    @media (max-width: 700px) {
+      .row { grid-template-columns: 1fr; }
+      .label { margin-bottom: -4px; }
+    }
   </style>
 </head>
 
@@ -48,8 +56,8 @@
     <h1>TASLP 2025 · DIL Demo</h1>
     <div class="meta">Companion page (audio examples + index download)</div>
     <p class="subtitle">
-      Tabs correspond to different H1 rooms: <b>H1 = 803 / 508 / 403</b>. Each example will include:
-      Clean, Observed (reverb), WPE/DFN/BuDDy baselines, and DIL variants (Oracle / mismatch settings).
+      Tabs correspond to different H1 rooms (<b>803 / 508 / 403</b>). Each example includes clean, observed (reverb),
+      three baselines (WPE/DFN/BuDDy), and DIL variants (oracle and mismatch settings).
     </p>
 
     <div class="tabs">
@@ -59,92 +67,40 @@
       <button class="tab-button" onclick="openTab('downloads')">Downloads</button>
     </div>
 
-    <!-- H1=803 -->
     <div id="h1_803" class="tab-content active">
       <div class="card">
         <h2>H1 = 803</h2>
-        <div>
-          <span class="badge">clean</span>
-          <span class="badge">observed</span>
-          <span class="badge">wpe</span>
-          <span class="badge">dfn</span>
-          <span class="badge">buddy</span>
-          <span class="badge">dil_oracle</span>
-          <span class="badge">dil_mismatch1</span>
-          <span class="badge">dil_mismatch2</span>
-        </div>
-        <p class="hint">
-          <b>Status:</b> Upload in progress. Representative audio examples will be added/updated here.
-        </p>
         <p class="small">
-          DIL mismatch-1: H2 is chosen from remaining RIRs in the same room as H1.<br/>
-          DIL mismatch-2: H2 is chosen from a different room than H1.
+          DIL mismatch-1: H2 chosen from remaining RIRs in the same room as H1. <br/>
+          DIL mismatch-2: H2 chosen from a different room than H1.
         </p>
       </div>
-
-      <div class="card">
-        <h3>Example placeholder</h3>
-        <p class="hint">
-          Audio files will follow the naming convention (example):
-          <code>ieee02f05.wav</code>, <code>ieee02f05_reverb.wav</code>, <code>ieee02f05_wpe.wav</code>, <code>ieee02f05_dfn.wav</code>,
-          <code>ieee02f05_buddy.wav</code>, <code>ieee02f05_dil_oracle.wav</code>, <code>ieee02f05_dil_mismatch1.wav</code>,
-          <code>ieee02f05_dil_mismatch2.wav</code>.
-        </p>
-      </div>
+      <div id="list_803"></div>
     </div>
 
-    <!-- H1=508 -->
     <div id="h1_508" class="tab-content">
       <div class="card">
         <h2>H1 = 508</h2>
-        <p class="hint">
-          <b>Status:</b> Upload in progress. Representative audio examples will be added/updated here.
-        </p>
       </div>
-
-      <div class="card">
-        <h3>Example placeholder</h3>
-        <p class="hint">
-          Audio will be organized by H1 room tabs and trial folders, and follow the same suffix rules as H1=803.
-        </p>
-      </div>
+      <div id="list_508"></div>
     </div>
 
-    <!-- H1=403 -->
     <div id="h1_403" class="tab-content">
       <div class="card">
         <h2>H1 = 403</h2>
-        <p class="hint">
-          <b>Status:</b> Upload in progress. Representative audio examples will be added/updated here.
-        </p>
       </div>
-
-      <div class="card">
-        <h3>Example placeholder</h3>
-        <p class="hint">
-          Same track set as H1=803 and H1=508.
-        </p>
-      </div>
+      <div id="list_403"></div>
     </div>
 
-    <!-- Downloads -->
     <div id="downloads" class="tab-content">
       <div class="card">
         <h2>Downloads</h2>
-        <p class="hint">
-          The full index list and metadata used in the paper will be provided here.
-        </p>
-
         <div class="btnrow">
-          <!-- 你后面把 h1_index.npy 上传到同目录，这个按钮就立刻可用 -->
           <a class="btn" href="./h1_index.npy" download>Download H1 index (.npy)</a>
-
-          <!-- 你以后有代码仓库就把 # 换成真实链接 -->
           <a class="btn secondary" href="#" target="_blank" rel="noopener">Code (GitHub)</a>
         </div>
-
         <p class="small" style="margin-top: 10px;">
-          If the index file is not available yet, this link may return 404 temporarily and will be updated soon.
+          If the index file has not been uploaded yet, this link may temporarily return 404 and will be updated.
         </p>
       </div>
     </div>
@@ -152,6 +108,7 @@
 
   <script>
     function openTab(tabId) {
+      document.querySelectorAll("audio").forEach(a => { a.pause(); a.currentTime = 0; });
       document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
       document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
       document.getElementById(tabId).classList.add("active");
@@ -159,6 +116,104 @@
         .find(b => b.getAttribute("onclick") === `openTab('${tabId}')`);
       if (btn) btn.classList.add("active");
     }
+
+    // Page: /demos/papers/taslp2025-dil/
+    // Audio: /audio/taslp2025-dil/<folder>/<base>*.wav
+    const AUDIO_ROOT = "../../../audio/taslp2025-dil";
+
+    // Your samples (from your commit output)
+    const TRIALS = [
+      { h1: "403", folder: "trial1_h1_403", base: "ieee25f08" },
+      { h1: "403", folder: "trial1_h1_403", base: "ieee70m03" },
+
+      { h1: "508", folder: "trial1_h1_508", base: "ieee26f02" },
+      { h1: "508", folder: "trial1_h1_508", base: "ieee52m01" },
+
+      { h1: "803", folder: "trial1_h1_803", base: "ieee03f08" },
+      { h1: "803", folder: "trial1_h1_803", base: "ieee71m04" }
+    ];
+
+    // Track list (observed supports BOTH _noisy.wav and _reverb.wav)
+    const TRACKS = [
+      { label: "Clean", suffixes: [".wav"] },
+      { label: "Observed (Reverb)", suffixes: ["_noisy.wav", "_reverb.wav"] },
+      { label: "WPE", suffixes: ["_wpe.wav"] },
+      { label: "DFN", suffixes: ["_dfn.wav"] },
+      { label: "BuDDy", suffixes: ["_buddy.wav"] },
+      { label: "DIL (Oracle)", suffixes: ["_dil_oracle.wav"] },
+      { label: "DIL mismatch-1 (same room)", suffixes: ["_dil_mismatch1.wav"], optional: true },
+      { label: "DIL mismatch-2 (diff room)", suffixes: ["_dil_mismatch2.wav"], optional: true }
+    ];
+
+    function el(tag, attrs = {}, children = []) {
+      const n = document.createElement(tag);
+      Object.entries(attrs).forEach(([k,v]) => {
+        if (k === "class") n.className = v;
+        else if (k === "html") n.innerHTML = v;
+        else n.setAttribute(k, v);
+      });
+      children.forEach(c => n.appendChild(c));
+      return n;
+    }
+
+    async function exists(url) {
+      try {
+        const r = await fetch(url, { method: "HEAD" });
+        return r.ok;
+      } catch (e) { return false; }
+    }
+
+    async function resolveFirstExisting(basePath, suffixes) {
+      for (const s of suffixes) {
+        const url = `${basePath}${s}`;
+        if (await exists(url)) return url;
+      }
+      return null;
+    }
+
+    async function renderOneTrial(t) {
+      const card = el("div", { class: "card" });
+      card.appendChild(el("h3", { html: `Folder: <code>${t.folder}</code> · Sample: <code>${t.base}</code>` }));
+
+      const basePath = `${AUDIO_ROOT}/${t.folder}/${t.base}`;
+
+      for (const tr of TRACKS) {
+        const url = await resolveFirstExisting(basePath, tr.suffixes);
+
+        if (!url) {
+          if (tr.optional) continue; // optional track missing -> hide
+          // non-optional missing -> show a note instead of a broken player
+          card.appendChild(el("div", { class: "small", html: `Missing: <code>${t.base}${tr.suffixes[0]}</code>` }));
+          continue;
+        }
+
+        const row = el("div", { class: "row" });
+        row.appendChild(el("div", { class: "label", html: tr.label }));
+
+        const audio = el("audio", { controls: "" });
+        audio.appendChild(el("source", { src: url, type: "audio/wav" }));
+        row.appendChild(audio);
+
+        card.appendChild(row);
+      }
+
+      return card;
+    }
+
+    async function renderTrials(h1Value, containerId) {
+      const container = document.getElementById(containerId);
+      const items = TRIALS.filter(x => x.h1 === h1Value);
+
+      for (const t of items) {
+        container.appendChild(await renderOneTrial(t));
+      }
+    }
+
+    (async function init() {
+      await renderTrials("803", "list_803");
+      await renderTrials("508", "list_508");
+      await renderTrials("403", "list_403");
+    })();
   </script>
 </body>
 </html>
