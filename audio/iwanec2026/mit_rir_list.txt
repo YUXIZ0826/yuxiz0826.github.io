@@ -1,0 +1,5 @@
+MIT acoustic survey dataset
+
+1. Office 2 (t60~0.4s): h2 = h245_Classroom_1txts.wav (t60=0.396s)
+2. Lecture room 1 (t60=0.65s): h2 = h269_Office_ConferenceRoom_1txts.wav (t60=0.628s)
+3. Lecture room 2(t60=1.25s):  h2 = h103_Classroom_2txts.wav (t60=1.257s)
