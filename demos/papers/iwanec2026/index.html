@@ -26,7 +26,6 @@
       margin-bottom: 28px; line-height: 1.6;
     }
 
-    /* Tabs */
     .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
     .tab-btn {
       padding: 7px 18px; border-radius: 999px; border: 1px solid #ccc;
@@ -37,11 +36,9 @@
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    /* Room header */
     .room-header h2 { margin: 0 0 6px 0; font-size: 1.3em; }
     .room-note { font-size: 13px; color: #555; margin: 0 0 24px 0; line-height: 1.6; }
 
-    /* Sample block */
     .sample-block {
       background: #fff; border: 1px solid #eee; border-radius: 14px;
       padding: 18px 20px; margin-bottom: 18px;
@@ -51,7 +48,6 @@
       background: #f2f2f2; padding: 2px 7px; border-radius: 5px; font-size: 12px;
     }
 
-    /* Audio rows */
     .group-title {
       font-size: 11px; font-weight: bold; text-transform: uppercase;
       letter-spacing: 0.07em; color: #999; margin: 14px 0 6px 0;
@@ -63,7 +59,6 @@
     .audio-row audio { flex: 1; min-width: 0; height: 36px; }
     .na-note { font-size: 13px; color: #999; font-style: italic; }
 
-    /* Downloads */
     .downloads-list { list-style: none; padding: 0; margin: 0; }
     .downloads-list li {
       border: 1px solid #eee; border-radius: 12px; background: #fff;
@@ -80,7 +75,6 @@
     }
     .dl-btn:hover { background: #45a049; }
 
-    /* Config section */
     .config-section { margin-top: 52px; border-top: 2px solid #eee; padding-top: 36px; }
     .config-section > h2 { font-size: 1.25em; margin-bottom: 6px; }
     .config-intro { font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6; }
@@ -136,7 +130,6 @@
     <button class="tab-btn"        onclick="switchTab(event,'tab-dl')">Downloads</button>
   </div>
 
-  <!-- ══ Office 2 ══ -->
   <div id="tab-o2" class="tab-panel active">
     <div class="room-header">
       <h2>Office 2</h2>
@@ -149,7 +142,6 @@
     <div class="samples" data-room="office2"></div>
   </div>
 
-  <!-- ══ Lecture Room 1 ══ -->
   <div id="tab-lr1" class="tab-panel">
     <div class="room-header">
       <h2>Lecture Room 1</h2>
@@ -162,7 +154,6 @@
     <div class="samples" data-room="lr1"></div>
   </div>
 
-  <!-- ══ Lecture Room 2 ══ -->
   <div id="tab-lr2" class="tab-panel">
     <div class="room-header">
       <h2>Lecture Room 2</h2>
@@ -176,7 +167,6 @@
     <div class="samples" data-room="lr2"></div>
   </div>
 
-  <!-- ══ Downloads ══ -->
   <div id="tab-dl" class="tab-panel">
     <h2 style="margin-bottom:18px;">Downloads</h2>
     <ul class="downloads-list">
@@ -186,7 +176,7 @@
           <strong>H1 index list (all rooms)</strong>
           <span>Records the h1 channel index (randomly selected from 5) used for each test utterance. Shared across all mismatch configurations for reproducibility.</span>
         </div>
-        <a class="dl-btn" href="../../audio/iwanec2026/h1_index_list.csv" download>Download</a>
+        <a class="dl-btn" href="../../../audio/iwanec2026/h1_index_list.csv" download>Download</a>
       </li>
       <li>
         <span class="dl-icon">📄</span>
@@ -194,7 +184,7 @@
           <strong>H2 index list — DIL<sub>SR</sub></strong>
           <span>Records the h2 channel index independently drawn from the remaining four channels for each utterance. (DIL<sub>CR</sub> uses a fixed first channel; no index file needed.)</span>
         </div>
-        <a class="dl-btn" href="../../audio/iwanec2026/h2_sr_index_list.csv" download>Download</a>
+        <a class="dl-btn" href="../../../audio/iwanec2026/h2_sr_index_list.csv" download>Download</a>
       </li>
       <li>
         <span class="dl-icon">📄</span>
@@ -202,12 +192,11 @@
           <strong>MIT RIR filenames — DIL<sub>CD</sub></strong>
           <span>Lists the external MIT Acoustic Survey RIR files matched to each room by T<sub>60</sub>.</span>
         </div>
-        <a class="dl-btn" href="../../audio/iwanec2026/mit_rir_list.txt" download>Download</a>
+        <a class="dl-btn" href="../../../audio/iwanec2026/mit_rir_list.txt" download>Download</a>
       </li>
     </ul>
   </div>
 
-  <!-- ══ Full Experimental Configuration ══ -->
   <div class="config-section">
     <h2>Full Experimental Configuration</h2>
     <p class="config-intro">
@@ -304,16 +293,16 @@
 
   function buildSample(name, prefix, isLR2) {
     const methods = [
-      { label: 'Clean',                              file: 'clean.wav',    group: 'Reference' },
-      { label: 'Observed (Reverb)',                  file: 'observed.wav', group: null },
-      { label: 'WPE',                                file: 'wpe.wav',      group: 'Baseline' },
-      { label: 'DIL<sub>o</sub>',                   file: 'dil_o.wav',    group: 'DIL — Oracle' },
-      { label: 'DIL<sub>ε10</sub>',                 file: 'dil_e10.wav',  group: 'DIL — Synthetic Mismatch' },
-      { label: 'DIL<sub>ε20</sub>',                 file: 'dil_e20.wav',  group: null },
-      { label: 'DIL<sub>ε40</sub>',                 file: 'dil_e40.wav',  group: null },
-      { label: 'DIL<sub>SR</sub> (same room)',      file: 'dil_sr.wav',   group: 'DIL — Measured Mismatch' },
-      { label: 'DIL<sub>CR</sub> (cross room)',     file: 'dil_cr.wav',   group: null },
-      { label: 'DIL<sub>CD</sub> (cross dataset)',  file: 'dil_cd.wav',   group: null },
+      { label: 'Clean',                             file: 'clean.wav',    group: 'Reference' },
+      { label: 'Observed (Reverb)',                 file: 'observed.wav', group: null },
+      { label: 'WPE',                               file: 'wpe.wav',      group: 'Baseline' },
+      { label: 'DIL<sub>o</sub>',                  file: 'dil_o.wav',    group: 'DIL — Oracle' },
+      { label: 'DIL<sub>ε10</sub>',                file: 'dil_e10.wav',  group: 'DIL — Synthetic Mismatch' },
+      { label: 'DIL<sub>ε20</sub>',                file: 'dil_e20.wav',  group: null },
+      { label: 'DIL<sub>ε40</sub>',                file: 'dil_e40.wav',  group: null },
+      { label: 'DIL<sub>SR</sub> (same room)',     file: 'dil_sr.wav',   group: 'DIL — Measured Mismatch' },
+      { label: 'DIL<sub>CR</sub> (cross room)',    file: 'dil_cr.wav',   group: null },
+      { label: 'DIL<sub>CD</sub> (cross dataset)', file: 'dil_cd.wav',   group: null },
     ];
 
     let html = `<div class="sample-block">
@@ -339,9 +328,9 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const rooms = [
-      { room: 'office2', prefix: '../../audio/iwanec2026/office2', isLR2: false },
-      { room: 'lr1',     prefix: '../../audio/iwanec2026/lr1',     isLR2: false },
-      { room: 'lr2',     prefix: '../../audio/iwanec2026/lr2',     isLR2: true  },
+      { room: 'office2', prefix: '../../../audio/iwanec2026/office2', isLR2: false },
+      { room: 'lr1',     prefix: '../../../audio/iwanec2026/lr1',     isLR2: false },
+      { room: 'lr2',     prefix: '../../../audio/iwanec2026/lr2',     isLR2: true  },
     ];
     const samples = ['61-70970-0015', '121-127105-0025', '260-123286-0022'];
 
