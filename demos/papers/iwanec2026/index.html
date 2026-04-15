@@ -146,7 +146,7 @@
         (MIT Acoustic Survey, T<sub>60</sub> = 0.396 s).
       </p>
     </div>
-    <div class="samples" data-room="o2"></div>
+    <div class="samples" data-room="office2"></div>
   </div>
 
   <!-- ══ Lecture Room 1 ══ -->
@@ -186,7 +186,7 @@
           <strong>H1 index list (all rooms)</strong>
           <span>Records the h1 channel index (randomly selected from 5) used for each test utterance. Shared across all mismatch configurations for reproducibility.</span>
         </div>
-        <a class="dl-btn" href="../../audio/iwanec2025/h1_index_list.csv" download>Download</a>
+        <a class="dl-btn" href="../../audio/iwanec2026/h1_index_list.csv" download>Download</a>
       </li>
       <li>
         <span class="dl-icon">📄</span>
@@ -194,7 +194,7 @@
           <strong>H2 index list — DIL<sub>SR</sub></strong>
           <span>Records the h2 channel index independently drawn from the remaining four channels for each utterance. (DIL<sub>CR</sub> uses a fixed first channel; no index file needed.)</span>
         </div>
-        <a class="dl-btn" href="../../audio/iwanec2025/h2_sr_index_list.csv" download>Download</a>
+        <a class="dl-btn" href="../../audio/iwanec2026/h2_sr_index_list.csv" download>Download</a>
       </li>
       <li>
         <span class="dl-icon">📄</span>
@@ -202,7 +202,7 @@
           <strong>MIT RIR filenames — DIL<sub>CD</sub></strong>
           <span>Lists the external MIT Acoustic Survey RIR files matched to each room by T<sub>60</sub>.</span>
         </div>
-        <a class="dl-btn" href="../../audio/iwanec2025/mit_rir_list.txt" download>Download</a>
+        <a class="dl-btn" href="../../audio/iwanec2026/mit_rir_list.txt" download>Download</a>
       </li>
     </ul>
   </div>
@@ -304,16 +304,16 @@
 
   function buildSample(name, prefix, isLR2) {
     const methods = [
-      { label: 'Clean',                          file: 'clean.wav',    group: 'Reference' },
-      { label: 'Observed (Reverb)',               file: 'observed.wav', group: null },
-      { label: 'WPE',                             file: 'wpe.wav',      group: 'Baseline' },
-      { label: 'DIL<sub>o</sub>',                file: 'dil_o.wav',    group: 'DIL — Oracle' },
-      { label: 'DIL<sub>ε10</sub>',              file: 'dil_e10.wav',  group: 'DIL — Synthetic Mismatch' },
-      { label: 'DIL<sub>ε20</sub>',              file: 'dil_e20.wav',  group: null },
-      { label: 'DIL<sub>ε40</sub>',              file: 'dil_e40.wav',  group: null },
-      { label: 'DIL<sub>SR</sub> (same room)',   file: 'dil_sr.wav',   group: 'DIL — Measured Mismatch' },
-      { label: 'DIL<sub>CR</sub> (cross room)',  file: 'dil_cr.wav',   group: null },
-      { label: 'DIL<sub>CD</sub> (cross dataset)', file: 'dil_cd.wav', group: null },
+      { label: 'Clean',                              file: 'clean.flac',    group: 'Reference' },
+      { label: 'Observed (Reverb)',                  file: 'observed.flac', group: null },
+      { label: 'WPE',                                file: 'wpe.flac',      group: 'Baseline' },
+      { label: 'DIL<sub>o</sub>',                   file: 'dil_o.flac',    group: 'DIL — Oracle' },
+      { label: 'DIL<sub>ε10</sub>',                 file: 'dil_e10.flac',  group: 'DIL — Synthetic Mismatch' },
+      { label: 'DIL<sub>ε20</sub>',                 file: 'dil_e20.flac',  group: null },
+      { label: 'DIL<sub>ε40</sub>',                 file: 'dil_e40.flac',  group: null },
+      { label: 'DIL<sub>SR</sub> (same room)',      file: 'dil_sr.flac',   group: 'DIL — Measured Mismatch' },
+      { label: 'DIL<sub>CR</sub> (cross room)',     file: 'dil_cr.flac',   group: null },
+      { label: 'DIL<sub>CD</sub> (cross dataset)',  file: 'dil_cd.flac',   group: null },
     ];
 
     let html = `<div class="sample-block">
@@ -325,7 +325,7 @@
         html += `<div class="group-title">${group}</div>`;
         lastGroup = group;
       }
-      const na = isLR2 && file === 'dil_cr.wav';
+      const na = isLR2 && file === 'dil_cr.flac';
       html += `<div class="audio-row">
         <label>${label}</label>
         ${na
@@ -339,11 +339,11 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const rooms = [
-      { room: 'o2',  prefix: '../../audio/iwanec2025/office2', isLR2: false },
-      { room: 'lr1', prefix: '../../audio/iwanec2025/lr1',     isLR2: false },
-      { room: 'lr2', prefix: '../../audio/iwanec2025/lr2',     isLR2: true  },
+      { room: 'office2', prefix: '../../audio/iwanec2026/office2', isLR2: false },
+      { room: 'lr1',     prefix: '../../audio/iwanec2026/lr1',     isLR2: false },
+      { room: 'lr2',     prefix: '../../audio/iwanec2026/lr2',     isLR2: true  },
     ];
-    const samples = ['sample_01', 'sample_02', 'sample_03'];
+    const samples = ['61-70970-0015', '121-127105-0025', '260-123286-0022'];
 
     rooms.forEach(({ room, prefix, isLR2 }) => {
       const el = document.querySelector(`.samples[data-room="${room}"]`);
