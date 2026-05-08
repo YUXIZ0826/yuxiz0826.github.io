@@ -199,15 +199,15 @@
         <div class="info-card">
           <h3>🎯 Objective</h3>
           Evaluate the DIL framework under <strong>noisy reverberant</strong> conditions
-          (babble noise at SNR = 10 dB), assessing robustness beyond the clean-speech setting.
+          (babble noise at SNR = 10 dB) as an additional experiment.
           Methods compared: WPE, DIL<sub>o</sub> (oracle), DIL<sub>SR</sub> (same-room mismatch).
         </div>
 
         <div class="info-card">
           <h3>🔊 Noise Source</h3>
-          <strong>CHILDREN_STUDENTS-talking.flac</strong><br>
+          <strong>CHILDREN_STUDENTS-talking.flac</strong> (available for download in the Downloads tab)<br>
           Original: 44.1 kHz, stereo, 122.5 s.<br>
-          Pre-processing: first channel → mono, resampled to 16 kHz (~1.96M samples).<br>
+          Pre-processing: first channel → mono, resampled to 16 kHz.<br>
           SNR: <strong>10 dB</strong>, applied per utterance with a reproducible random seed.
         </div>
 
@@ -215,19 +215,20 @@
           <h3>⚙️ Signal Generation</h3>
           For each utterance <em>i</em>:<br>
           1. Convolve clean speech x[n] with h<sub>1</sub> → reverberant y[n]<br>
-          2. Draw noise segment using <code>seed = utterance_idx</code>, random start point within the 122.5 s file<br>
-          3. Scale noise to target SNR = 10 dB and add: y<sub>noisy</sub>[n] = y[n] + scaled noise<br>
-          Start sample recorded in manifest for exact reproducibility.
+          2. Extract a noise segment from the babble noise file with the <strong>same length as y[n]</strong>,
+          with start point determined by utterance index for reproducibility<br>
+          3. Scale noise to target SNR = 10 dB and add: y<sub>noisy</sub>[n] = y[n] + scaled noise
         </div>
 
         <div class="info-card">
           <h3>🧠 DIL Training</h3>
           Input: y<sub>noisy</sub>[n] (noisy reverberant)<br>
-          Pseudo pair: (h<sub>2</sub> ∗ y<sub>noisy</sub>, y<sub>noisy</sub>)<br>
-          Training target: y<sub>noisy</sub>[n] (noise-inclusive)<br>
+          Pseudo pair: (h<sub>2</sub> ∗ y<sub>noisy</sub>[n], y<sub>noisy</sub>[n])<br>
+          Training target: y<sub>noisy</sub>[n] — the network learns to recover the reverberant
+          signal from its further-degraded version<br>
           Inference output: x̂[n] (estimated clean)<br><br>
           DIL<sub>SR</sub>: h<sub>2</sub> drawn from same ACE room, different channel
-          (indices stored in <code>h2_indices_SR.npy</code>).
+          (see Downloads for index file).
         </div>
 
       </div>
@@ -337,6 +338,14 @@
           <span>Records the h2 channel index independently drawn from the remaining four channels for each utterance. (DIL<sub>CR</sub> uses a fixed first channel; no index file needed.)</span>
         </div>
         <a class="dl-btn" href="../../../audio/iwanec2026/h2_sr_index_list.csv" download>Download</a>
+      </li>
+      <li>
+        <span class="dl-icon">🔊</span>
+        <div class="dl-info">
+          <strong>Babble noise file — CHILDREN_STUDENTS-talking.flac</strong>
+          <span>The babble noise source used in the noisy reverberant experiment (SNR = 10 dB). Original 44.1 kHz stereo, pre-processed to 16 kHz mono.</span>
+        </div>
+        <a class="dl-btn" href="../../../audio/iwanec2026/CHILDREN_STUDENTS-talking.flac" download>Download</a>
       </li>
       <li>
         <span class="dl-icon">📄</span>
