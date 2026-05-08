@@ -3,29 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IWANEC 2025 · DIL Demo</title>
+  <title>IWANEC 2026 · DIL Demo</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      color: #111; background: #fafaf8;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-    }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #111; background: #fafaf8; }
+    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 80px; }
     .topbar { margin-bottom: 20px; }
     .topbar a { text-decoration: none; color: #333; }
     .topbar a:hover { text-decoration: underline; }
-
     h1 { text-align: center; margin-bottom: 6px; font-size: 2em; }
     .subtitle { text-align: center; color: #555; font-size: 14px; margin-bottom: 8px; }
-    .desc {
-      text-align: center; color: #444; font-size: 14px;
-      margin-bottom: 28px; line-height: 1.6;
-    }
+    .desc { text-align: center; color: #444; font-size: 14px; margin-bottom: 28px; line-height: 1.6; }
 
+    /* ── Tabs ── */
     .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
     .tab-btn {
       padding: 7px 18px; border-radius: 999px; border: 1px solid #ccc;
@@ -36,85 +25,114 @@
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
+    /* ── Room sub-tabs ── */
+    .room-tabs { display: flex; gap: 6px; margin-bottom: 20px; }
+    .room-tab-btn {
+      padding: 5px 14px; border-radius: 999px; border: 1px solid #ddd;
+      background: #fff; cursor: pointer; font-size: 13px; color: #444; transition: 0.15s;
+    }
+    .room-tab-btn:hover { background: #f5f5f5; }
+    .room-tab-btn.active { background: #333; color: white; border-color: #333; }
+    .room-panel { display: none; }
+    .room-panel.active { display: block; }
+
+    /* ── Room header ── */
     .room-header h2 { margin: 0 0 6px 0; font-size: 1.3em; }
     .room-note { font-size: 13px; color: #555; margin: 0 0 24px 0; line-height: 1.6; }
 
+    /* ── Sample block ── */
     .sample-block {
       background: #fff; border: 1px solid #eee; border-radius: 14px;
       padding: 18px 20px; margin-bottom: 18px;
     }
     .sample-label { font-size: 13px; color: #444; margin-bottom: 14px; }
-    .sample-label code {
-      background: #f2f2f2; padding: 2px 7px; border-radius: 5px; font-size: 12px;
-    }
-
+    .sample-label code { background: #f2f2f2; padding: 2px 7px; border-radius: 5px; font-size: 12px; }
     .group-title {
       font-size: 11px; font-weight: bold; text-transform: uppercase;
       letter-spacing: 0.07em; color: #999; margin: 14px 0 6px 0;
     }
     .audio-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
-    .audio-row label {
-      width: 220px; flex-shrink: 0; font-size: 14px; font-weight: bold; color: #222;
-    }
+    .audio-row label { width: 220px; flex-shrink: 0; font-size: 14px; font-weight: bold; color: #222; }
     .audio-row audio { flex: 1; min-width: 0; height: 36px; }
     .na-note { font-size: 13px; color: #999; font-style: italic; }
 
+    /* ── Downloads ── */
     .downloads-list { list-style: none; padding: 0; margin: 0; }
     .downloads-list li {
       border: 1px solid #eee; border-radius: 12px; background: #fff;
-      padding: 14px 18px; margin-bottom: 12px;
-      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px;
     }
     .dl-icon { font-size: 22px; }
     .dl-info { flex: 1; }
     .dl-info strong { display: block; font-size: 14px; }
     .dl-info span { font-size: 12px; color: #777; }
-    .dl-btn {
-      padding: 7px 14px; background: #4CAF50; color: white;
-      border-radius: 8px; text-decoration: none; font-size: 13px;
-    }
+    .dl-btn { padding: 7px 14px; background: #4CAF50; color: white; border-radius: 8px; text-decoration: none; font-size: 13px; }
     .dl-btn:hover { background: #45a049; }
 
+    /* ── Config section ── */
     .config-section { margin-top: 52px; border-top: 2px solid #eee; padding-top: 36px; }
     .config-section > h2 { font-size: 1.25em; margin-bottom: 6px; }
     .config-intro { font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6; }
     .config-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    @media (max-width: 600px) {
-      .config-cards { grid-template-columns: 1fr; }
-      .audio-row label { width: 150px; }
-    }
-    .config-card {
-      background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 16px 18px;
-    }
-    .cname {
-      font-weight: bold; font-size: 14px; margin-bottom: 8px;
-      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-    }
-    .badge {
-      font-size: 11px; padding: 2px 8px; border-radius: 999px;
-      font-family: monospace; font-weight: normal;
-    }
+    .config-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 16px 18px; }
+    .cname { font-weight: bold; font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; font-family: monospace; font-weight: normal; }
     .badge-oracle { background: #e8f5e9; color: #2e7d32; }
     .badge-synth  { background: #e3f2fd; color: #1565c0; }
     .badge-meas   { background: #fff3e0; color: #e65100; }
     .badge-ext    { background: #f3e5f5; color: #6a1b9a; }
     .config-card p { font-size: 13px; color: #555; margin: 0; line-height: 1.6; }
     .cd-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
-    .cd-table th {
-      text-align: left; font-weight: bold; color: #555;
-      border-bottom: 1px solid #eee; padding: 4px 8px;
-    }
+    .cd-table th { text-align: left; font-weight: bold; color: #555; border-bottom: 1px solid #eee; padding: 4px 8px; }
     .cd-table td { padding: 5px 8px; color: #444; border-bottom: 1px solid #f5f5f5; }
+
+    /* ── Babble section ── */
+    .babble-section { margin-bottom: 36px; }
+    .babble-section h2 { font-size: 1.2em; margin: 0 0 12px 0; }
+    .info-card {
+      background: #fff; border: 1px solid #eee; border-radius: 14px;
+      padding: 20px 22px; margin-bottom: 20px; font-size: 13px; color: #444; line-height: 1.7;
+    }
+    .info-card h3 { margin: 0 0 10px 0; font-size: 14px; color: #222; }
+    .info-card code { background: #f2f2f2; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .config-cards { grid-template-columns: 1fr; }
+      .audio-row label { width: 150px; }
+      .results-table { font-size: 11px; }
+    }
+
+    /* ── Results table ── */
+    .results-wrap { overflow-x: auto; margin-bottom: 32px; }
+    .results-table {
+      width: 100%; border-collapse: collapse; font-size: 13px;
+      background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden;
+    }
+    .results-table th {
+      background: #f7f7f7; padding: 8px 10px; text-align: center;
+      font-weight: bold; color: #333; border-bottom: 2px solid #eee;
+    }
+    .results-table th.method-col { text-align: left; }
+    .results-table td { padding: 7px 10px; text-align: center; border-bottom: 1px solid #f0f0f0; color: #333; }
+    .results-table td.method-col { text-align: left; font-weight: bold; }
+    .results-table tr:last-child td { border-bottom: none; }
+    .results-table .group-header td {
+      background: #fafafa; font-size: 11px; font-weight: bold;
+      text-transform: uppercase; letter-spacing: 0.06em; color: #888;
+      padding: 5px 10px; border-bottom: 1px solid #eee;
+    }
+    .best { font-weight: bold; }
+    .na { color: #bbb; }
+    .col-group-sep { border-left: 2px solid #eee; }
   </style>
 </head>
 <body>
 <div class="container">
 
-  <div class="topbar">
-    <a href="../../index.html">← Back to Demos</a>
-  </div>
+  <div class="topbar"><a href="../../index.html">← Back to Demos</a></div>
 
-  <h1>IWANEC 2025 · DIL Demo</h1>
+  <h1>IWANEC 2026 · DIL Demo</h1>
   <p class="subtitle">Companion page (audio examples + reproducibility index)</p>
   <p class="desc">
     Tabs correspond to different H1 rooms
@@ -127,46 +145,180 @@
     <button class="tab-btn active" onclick="switchTab(event,'tab-o2')">Office 2</button>
     <button class="tab-btn"        onclick="switchTab(event,'tab-lr1')">Lecture Room 1</button>
     <button class="tab-btn"        onclick="switchTab(event,'tab-lr2')">Lecture Room 2</button>
+    <button class="tab-btn"        onclick="switchTab(event,'tab-babble')">Babble Noise</button>
     <button class="tab-btn"        onclick="switchTab(event,'tab-dl')">Downloads</button>
   </div>
 
+  <!-- ══ Office 2 ══ -->
   <div id="tab-o2" class="tab-panel active">
     <div class="room-header">
       <h2>Office 2</h2>
       <p class="room-note">
         ACE dataset · T<sub>60</sub> ≈ 0.4 s<br>
-        DIL<sub>CD</sub>: h2 = <code>h245_Classroom_1txts.wav</code>
-        (MIT Acoustic Survey, T<sub>60</sub> = 0.396 s).
+        DIL<sub>CD</sub>: h2 = <code>h245_Classroom_1txts.wav</code> (MIT Acoustic Survey, T<sub>60</sub> = 0.396 s).
       </p>
     </div>
     <div class="samples" data-room="office2"></div>
   </div>
 
+  <!-- ══ Lecture Room 1 ══ -->
   <div id="tab-lr1" class="tab-panel">
     <div class="room-header">
       <h2>Lecture Room 1</h2>
       <p class="room-note">
         ACE dataset · T<sub>60</sub> ≈ 0.65 s<br>
-        DIL<sub>CD</sub>: h2 = <code>h269_Office_ConferenceRoom_1txts.wav</code>
-        (MIT Acoustic Survey, T<sub>60</sub> = 0.628 s).
+        DIL<sub>CD</sub>: h2 = <code>h269_Office_ConferenceRoom_1txts.wav</code> (MIT Acoustic Survey, T<sub>60</sub> = 0.628 s).
       </p>
     </div>
     <div class="samples" data-room="lr1"></div>
   </div>
 
+  <!-- ══ Lecture Room 2 ══ -->
   <div id="tab-lr2" class="tab-panel">
     <div class="room-header">
       <h2>Lecture Room 2</h2>
       <p class="room-note">
         ACE dataset · T<sub>60</sub> ≈ 1.25 s<br>
         DIL<sub>CR</sub>: <strong>N/A</strong> — no ACE room with a comparable T<sub>60</sub> is available.<br>
-        DIL<sub>CD</sub>: h2 = <code>h103_Classroom_2txts.wav</code>
-        (MIT Acoustic Survey, T<sub>60</sub> = 1.257 s).
+        DIL<sub>CD</sub>: h2 = <code>h103_Classroom_2txts.wav</code> (MIT Acoustic Survey, T<sub>60</sub> = 1.257 s).
       </p>
     </div>
     <div class="samples" data-room="lr2"></div>
   </div>
 
+  <!-- ══════════════════════════════════════════
+       BABBLE NOISE TAB
+  ══════════════════════════════════════════ -->
+  <div id="tab-babble" class="tab-panel">
+
+    <!-- Experiment design -->
+    <div class="babble-section">
+      <h2>Experiment Design</h2>
+      <div class="info-grid">
+
+        <div class="info-card">
+          <h3>🎯 Objective</h3>
+          Evaluate the DIL framework under <strong>noisy reverberant</strong> conditions
+          (babble noise at SNR = 10 dB), assessing robustness beyond the clean-speech setting.
+          Methods compared: WPE, DIL<sub>o</sub> (oracle), DIL<sub>SR</sub> (same-room mismatch).
+        </div>
+
+        <div class="info-card">
+          <h3>🔊 Noise Source</h3>
+          <strong>CHILDREN_STUDENTS-talking.flac</strong><br>
+          Original: 44.1 kHz, stereo, 122.5 s.<br>
+          Pre-processing: first channel → mono, resampled to 16 kHz (~1.96M samples).<br>
+          SNR: <strong>10 dB</strong>, applied per utterance with a reproducible random seed.
+        </div>
+
+        <div class="info-card">
+          <h3>⚙️ Signal Generation</h3>
+          For each utterance <em>i</em>:<br>
+          1. Convolve clean speech x[n] with h<sub>1</sub> → reverberant y[n]<br>
+          2. Draw noise segment using <code>seed = utterance_idx</code>, random start point within the 122.5 s file<br>
+          3. Scale noise to target SNR = 10 dB and add: y<sub>noisy</sub>[n] = y[n] + scaled noise<br>
+          Start sample recorded in manifest for exact reproducibility.
+        </div>
+
+        <div class="info-card">
+          <h3>🧠 DIL Training</h3>
+          Input: y<sub>noisy</sub>[n] (noisy reverberant)<br>
+          Pseudo pair: (h<sub>2</sub> ∗ y<sub>noisy</sub>, y<sub>noisy</sub>)<br>
+          Training target: y<sub>noisy</sub>[n] (noise-inclusive)<br>
+          Inference output: x̂[n] (estimated clean)<br><br>
+          DIL<sub>SR</sub>: h<sub>2</sub> drawn from same ACE room, different channel
+          (indices stored in <code>h2_indices_SR.npy</code>).
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Results table -->
+    <div class="babble-section">
+      <h2>Results — SNR = 10 dB</h2>
+      <p style="font-size:13px;color:#555;margin-bottom:14px;">
+        WER and WERR (%) are the primary metrics reported in the paper.
+        PESQ, STOI, and LSD are provided here as supplementary signal-level metrics.
+        Bold indicates best performance per room. Standard deviations in parentheses.
+      </p>
+      <div class="results-wrap">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th class="method-col" rowspan="2">Method</th>
+              <th colspan="5">Office 2 (T<sub>60</sub> ≈ 0.4 s)</th>
+              <th colspan="5" class="col-group-sep">Lecture Room 1 (T<sub>60</sub> ≈ 0.65 s)</th>
+              <th colspan="5" class="col-group-sep">Lecture Room 2 (T<sub>60</sub> ≈ 1.25 s)</th>
+            </tr>
+            <tr>
+              <th>WER↓</th><th>WERR↑</th><th>PESQ↑</th><th>STOI↑</th><th>LSD↓</th>
+              <th class="col-group-sep">WER↓</th><th>WERR↑</th><th>PESQ↑</th><th>STOI↑</th><th>LSD↓</th>
+              <th class="col-group-sep">WER↓</th><th>WERR↑</th><th>PESQ↑</th><th>STOI↑</th><th>LSD↓</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="method-col">Observed</td>
+              <td>56.8</td><td class="na">—</td>
+              <td>1.74 <small>(0.22)</small></td><td>0.64 <small>(0.05)</small></td><td>27.89 <small>(7.06)</small></td>
+              <td class="col-group-sep">50.9</td><td class="na">—</td>
+              <td>1.76 <small>(0.24)</small></td><td>0.65 <small>(0.07)</small></td><td>27.42 <small>(7.31)</small></td>
+              <td class="col-group-sep">70.2</td><td class="na">—</td>
+              <td>1.59 <small>(0.23)</small></td><td>0.63 <small>(0.05)</small></td><td>27.82 <small>(7.31)</small></td>
+            </tr>
+            <tr>
+              <td class="method-col">WPE</td>
+              <td>52.6</td><td>7.3</td>
+              <td>1.77 <small>(0.22)</small></td><td>0.66 <small>(0.05)</small></td><td>27.73 <small>(7.13)</small></td>
+              <td class="col-group-sep">46.0</td><td>9.6</td>
+              <td>1.80 <small>(0.24)</small></td><td>0.67 <small>(0.06)</small></td><td>27.26 <small>(7.47)</small></td>
+              <td class="col-group-sep">62.7</td><td>10.7</td>
+              <td>1.63 <small>(0.22)</small></td><td>0.65 <small>(0.05)</small></td><td>27.65 <small>(7.42)</small></td>
+            </tr>
+            <tr>
+              <td class="method-col">DIL<sub>o</sub></td>
+              <td class="best">49.1</td><td class="best">13.6</td>
+              <td class="best">1.90 <small>(0.23)</small></td><td class="best">0.71 <small>(0.06)</small></td><td class="best">25.56 <small>(7.33)</small></td>
+              <td class="col-group-sep best">45.9</td><td class="best">9.8</td>
+              <td class="best">1.91 <small>(0.24)</small></td><td class="best">0.71 <small>(0.06)</small></td><td class="best">24.88 <small>(7.69)</small></td>
+              <td class="col-group-sep best">56.4</td><td class="best">19.7</td>
+              <td class="best">1.81 <small>(0.22)</small></td><td class="best">0.69 <small>(0.06)</small></td><td class="best">24.30 <small>(7.61)</small></td>
+            </tr>
+            <tr>
+              <td class="method-col">DIL<sub>SR</sub></td>
+              <td>51.9</td><td>8.6</td>
+              <td>1.87 <small>(0.22)</small></td><td>0.70 <small>(0.05)</small></td><td>25.70 <small>(7.31)</small></td>
+              <td class="col-group-sep">48.6</td><td>4.5</td>
+              <td>1.87 <small>(0.23)</small></td><td>0.69 <small>(0.06)</small></td><td>25.12 <small>(7.56)</small></td>
+              <td class="col-group-sep">61.1</td><td>13.0</td>
+              <td>1.76 <small>(0.22)</small></td><td>0.68 <small>(0.05)</small></td><td>24.93 <small>(7.57)</small></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Audio examples -->
+    <div class="babble-section">
+      <h2>Audio Examples</h2>
+      <p style="font-size:13px;color:#555;margin-bottom:16px;">
+        Each sample: clean speech, noisy reverberant input (y<sub>noisy</sub>), and enhanced outputs.
+      </p>
+
+      <div class="room-tabs">
+        <button class="room-tab-btn active" onclick="switchRoomTab(event,'babble-o2')">Office 2</button>
+        <button class="room-tab-btn"        onclick="switchRoomTab(event,'babble-lr1')">Lecture Room 1</button>
+        <button class="room-tab-btn"        onclick="switchRoomTab(event,'babble-lr2')">Lecture Room 2</button>
+      </div>
+
+      <div id="babble-o2"  class="room-panel active"><div class="samples" data-room="babble-office2"></div></div>
+      <div id="babble-lr1" class="room-panel">        <div class="samples" data-room="babble-lr1"></div></div>
+      <div id="babble-lr2" class="room-panel">        <div class="samples" data-room="babble-lr2"></div></div>
+    </div>
+
+  </div><!-- end babble tab -->
+
+  <!-- ══ Downloads ══ -->
   <div id="tab-dl" class="tab-panel">
     <h2 style="margin-bottom:18px;">Downloads</h2>
     <ul class="downloads-list">
@@ -194,9 +346,11 @@
         </div>
         <a class="dl-btn" href="../../../audio/iwanec2026/mit_rir_list.txt" download>Download</a>
       </li>
+
     </ul>
   </div>
 
+  <!-- ══ Full Experimental Configuration ══ -->
   <div class="config-section">
     <h2>Full Experimental Configuration</h2>
     <p class="config-intro">
@@ -206,82 +360,36 @@
       configurations for reproducibility.
     </p>
     <div class="config-cards">
-
       <div class="config-card">
         <div class="cname">DIL<sub>o</sub> <span class="badge badge-oracle">Oracle</span></div>
-        <p>
-          h<sub>2</sub>[n] = h<sub>1</sub>[n]. The further-degraded signal y′[n] is generated
-          using the same RIR as the observed y[n]. Internal training pairs are fully consistent
-          with the true reverberation process, providing a best-case learning scenario.
-          Serves as an <strong>upper-bound</strong> reference for the DIL framework.
-        </p>
+        <p>h<sub>2</sub>[n] = h<sub>1</sub>[n]. The further-degraded signal y′[n] is generated using the same RIR as the observed y[n]. Internal training pairs are fully consistent with the true reverberation process, providing a best-case learning scenario. Serves as an <strong>upper-bound</strong> reference for the DIL framework.</p>
       </div>
-
       <div class="config-card">
         <div class="cname">DIL<sub>ε10</sub> / DIL<sub>ε20</sub> / DIL<sub>ε40</sub> <span class="badge badge-synth">Synthetic</span></div>
-        <p>
-          Controlled synthetic mismatch. h<sub>2</sub>[n] = h<sub>1</sub>[n] + e[n], where the
-          variance of the error vector e[n] is set to <strong>10%</strong>, <strong>20%</strong>,
-          or <strong>40%</strong> of the variance of h<sub>1</sub>[n] respectively.
-          This controls the overall energy of the estimation error.
-          Quantifies sensitivity to calibrated perturbations of the degradation prior.
-        </p>
+        <p>Controlled synthetic mismatch. h<sub>2</sub>[n] = h<sub>1</sub>[n] + e[n], where the variance of the error vector e[n] is set to <strong>10%</strong>, <strong>20%</strong>, or <strong>40%</strong> of the variance of h<sub>1</sub>[n] respectively. Quantifies sensitivity to calibrated perturbations of the degradation prior.</p>
       </div>
-
       <div class="config-card">
         <div class="cname">DIL<sub>SR</sub> <span class="badge badge-meas">Same Room</span></div>
-        <p>
-          Measured h<sub>2</sub>[n] from the same ACE room as h<sub>1</sub>[n] but at a
-          <strong>different microphone position</strong> (independently drawn from the remaining
-          four channels). h<sub>1</sub> is randomly selected per utterance; selections are
-          recorded for reproducibility. Although h<sub>2</sub> and h<sub>1</sub> share the same
-          room environment and T<sub>60</sub>, they correspond to different microphone positions,
-          introducing local spatial mismatch.
-        </p>
+        <p>Measured h<sub>2</sub>[n] from the same ACE room as h<sub>1</sub>[n] but at a <strong>different microphone position</strong> (independently drawn from the remaining four channels). Selections are recorded for reproducibility. Introduces local spatial mismatch while sharing T<sub>60</sub>.</p>
       </div>
-
       <div class="config-card">
         <div class="cname">DIL<sub>CR</sub> <span class="badge badge-meas">Cross Room</span></div>
-        <p>
-          Measured h<sub>2</sub>[n] from a <strong>different ACE room</strong> with a similar
-          T<sub>60</sub>. The same h<sub>1</sub> index list is reused. To maintain simplicity,
-          h<sub>2</sub> is fixed to the <strong>first channel</strong> among the five available.
-          For Lecture Room 2, no ACE room with a comparable T<sub>60</sub> exists — results are
-          marked <em>N/A</em>.
-        </p>
+        <p>Measured h<sub>2</sub>[n] from a <strong>different ACE room</strong> with a similar T<sub>60</sub>. h<sub>2</sub> is fixed to the <strong>first channel</strong> among the five available. For Lecture Room 2, no ACE room with a comparable T<sub>60</sub> exists — results are marked <em>N/A</em>.</p>
       </div>
-
       <div class="config-card" style="grid-column: 1 / -1;">
         <div class="cname">DIL<sub>CD</sub> <span class="badge badge-ext">Cross Dataset</span></div>
-        <p>
-          h<sub>2</sub>[n] drawn from the <strong>MIT Acoustic Survey</strong>
-          <a href="https://doi.org/10.1121/1.4951055" target="_blank" style="color:#4CAF50;">[Traer &amp; McDermott, 2016]</a>,
-          a single-channel external dataset, selecting the RIR whose T<sub>60</sub> most closely
-          matches h<sub>1</sub> for each room. The same h<sub>1</sub> index list is reused.
-          This configuration tests robustness to a fully external, unmatched prior.
-        </p>
+        <p>h<sub>2</sub>[n] drawn from the <strong>MIT Acoustic Survey</strong> <a href="https://doi.org/10.1121/1.4951055" target="_blank" style="color:#4CAF50;">[Traer &amp; McDermott, 2016]</a>, selecting the RIR whose T<sub>60</sub> most closely matches h<sub>1</sub> for each room.</p>
         <table class="cd-table">
-          <tr>
-            <th>Room (H1)</th><th>T<sub>60</sub></th><th>MIT RIR file</th><th>MIT T<sub>60</sub></th>
-          </tr>
-          <tr>
-            <td>Office 2</td><td>0.40 s</td>
-            <td><code>h245_Classroom_1txts.wav</code></td><td>0.396 s</td>
-          </tr>
-          <tr>
-            <td>Lecture Room 1</td><td>0.65 s</td>
-            <td><code>h269_Office_ConferenceRoom_1txts.wav</code></td><td>0.628 s</td>
-          </tr>
-          <tr>
-            <td>Lecture Room 2</td><td>1.25 s</td>
-            <td><code>h103_Classroom_2txts.wav</code></td><td>1.257 s</td>
-          </tr>
+          <tr><th>Room (H1)</th><th>T<sub>60</sub></th><th>MIT RIR file</th><th>MIT T<sub>60</sub></th></tr>
+          <tr><td>Office 2</td><td>0.40 s</td><td><code>h245_Classroom_1txts.wav</code></td><td>0.396 s</td></tr>
+          <tr><td>Lecture Room 1</td><td>0.65 s</td><td><code>h269_Office_ConferenceRoom_1txts.wav</code></td><td>0.628 s</td></tr>
+          <tr><td>Lecture Room 2</td><td>1.25 s</td><td><code>h103_Classroom_2txts.wav</code></td><td>1.257 s</td></tr>
         </table>
       </div>
-
     </div>
   </div>
-</div>
+
+</div><!-- end container -->
 
 <script>
   function switchTab(e, id) {
@@ -289,8 +397,20 @@
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     e.target.classList.add('active');
     document.getElementById(id).classList.add('active');
+    // Show config section only for main room tabs
+    const mainRoomTabs = ['tab-o2', 'tab-lr1', 'tab-lr2'];
+    document.querySelector('.config-section').style.display =
+      mainRoomTabs.includes(id) ? 'block' : 'none';
   }
 
+  function switchRoomTab(e, id) {
+    e.target.closest('.babble-section').querySelectorAll('.room-tab-btn').forEach(b => b.classList.remove('active'));
+    e.target.closest('.babble-section').querySelectorAll('.room-panel').forEach(p => p.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+
+  // ── Main audio samples ──
   function buildSample(name, prefix, isLR2) {
     const methods = [
       { label: 'Clean',                             file: 'clean.wav',    group: 'Reference' },
@@ -304,41 +424,58 @@
       { label: 'DIL<sub>CR</sub> (cross room)',    file: 'dil_cr.wav',   group: null },
       { label: 'DIL<sub>CD</sub> (cross dataset)', file: 'dil_cd.wav',   group: null },
     ];
-
-    let html = `<div class="sample-block">
-      <div class="sample-label">Sample: <code>${name}</code></div>`;
-
+    let html = `<div class="sample-block"><div class="sample-label">Sample: <code>${name}</code></div>`;
     let lastGroup = '';
     for (const { label, file, group } of methods) {
-      if (group && group !== lastGroup) {
-        html += `<div class="group-title">${group}</div>`;
-        lastGroup = group;
-      }
+      if (group && group !== lastGroup) { html += `<div class="group-title">${group}</div>`; lastGroup = group; }
       const na = isLR2 && file === 'dil_cr.wav';
-      html += `<div class="audio-row">
-        <label>${label}</label>
-        ${na
-          ? '<span class="na-note">N/A — no ACE room with comparable T<sub>60</sub></span>'
-          : `<audio controls src="${prefix}/${name}/${file}"></audio>`}
-      </div>`;
+      html += `<div class="audio-row"><label>${label}</label>${na
+        ? '<span class="na-note">N/A — no ACE room with comparable T<sub>60</sub></span>'
+        : `<audio controls src="${prefix}/${name}/${file}"></audio>`}</div>`;
     }
-    html += `</div>`;
-    return html;
+    return html + '</div>';
+  }
+
+  // ── Babble audio samples ──
+  function buildBabbleSample(name, prefix) {
+    const methods = [
+      { label: 'Clean',                         file: 'clean.wav',    group: 'Reference' },
+      { label: 'Noisy Reverberant',             file: 'observed.wav', group: null },
+      { label: 'WPE',                           file: 'wpe.wav',      group: 'Enhanced' },
+      { label: 'DIL<sub>o</sub>',              file: 'dil_o.wav',    group: null },
+      { label: 'DIL<sub>SR</sub> (same room)', file: 'dil_sr.wav',   group: null },
+    ];
+    let html = `<div class="sample-block"><div class="sample-label">Sample: <code>${name}</code></div>`;
+    let lastGroup = '';
+    for (const { label, file, group } of methods) {
+      if (group && group !== lastGroup) { html += `<div class="group-title">${group}</div>`; lastGroup = group; }
+      html += `<div class="audio-row"><label>${label}</label><audio controls src="${prefix}/${name}/${file}"></audio></div>`;
+    }
+    return html + '</div>';
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const rooms = [
+    // Main tabs
+    const mainRooms = [
       { room: 'office2', prefix: '../../../audio/iwanec2026/office2', isLR2: false },
       { room: 'lr1',     prefix: '../../../audio/iwanec2026/lr1',     isLR2: false },
       { room: 'lr2',     prefix: '../../../audio/iwanec2026/lr2',     isLR2: true  },
     ];
-    const samples = ['61-70970-0015', '121-127105-0025', '260-123286-0022', '6829-68771-0005'];
-
-    rooms.forEach(({ room, prefix, isLR2 }) => {
+    const samples = ['61-70970-0015', '121-127105-0025', '260-123286-0022', '6829-68771-0004'];
+    mainRooms.forEach(({ room, prefix, isLR2 }) => {
       const el = document.querySelector(`.samples[data-room="${room}"]`);
-      samples.forEach(name => {
-        el.innerHTML += buildSample(name, prefix, isLR2);
-      });
+      samples.forEach(name => { el.innerHTML += buildSample(name, prefix, isLR2); });
+    });
+
+    // Babble tabs
+    const babbleRooms = [
+      { room: 'babble-office2', prefix: '../../../audio/iwanec2026/babble/office2' },
+      { room: 'babble-lr1',     prefix: '../../../audio/iwanec2026/babble/lr1' },
+      { room: 'babble-lr2',     prefix: '../../../audio/iwanec2026/babble/lr2' },
+    ];
+    babbleRooms.forEach(({ room, prefix }) => {
+      const el = document.querySelector(`.samples[data-room="${room}"]`);
+      samples.forEach(name => { el.innerHTML += buildBabbleSample(name, prefix); });
     });
   });
 </script>
