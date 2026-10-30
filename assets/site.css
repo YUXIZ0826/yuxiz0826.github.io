@@ -1,0 +1,209 @@
+/* ------------------------------------------------------------
+   Yuxi Zhang — shared site stylesheet
+   Used by the homepage, the demos index and every paper demo page.
+   ------------------------------------------------------------ */
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap");
+
+:root{
+  --navy:#002147;        /* Imperial navy — headings, primary buttons */
+  --ink:#1b2a3c;         /* body text */
+  --muted:#5b6b7e;       /* secondary text */
+  --blue:#1d5fd6;        /* links and the waveform accent */
+  --blue-soft:#dbe7fb;   /* tab / chip fill */
+  --surface:#f3f6fb;     /* light panels */
+  --paper:#ffffff;
+  --line:#d9e1ec;
+  --radius:6px;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --sans:"Source Sans 3","Source Sans Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --max:980px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans)}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--serif);color:var(--navy);font-weight:500;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(40px,6vw,64px);line-height:1.02}
+h2{font-size:34px;line-height:1.15}
+h3{font-size:22px;line-height:1.3}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+/* ---------- site header (shared) ---------- */
+.site-head{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px}
+.site-head .brand{font-family:var(--serif);font-size:21px;font-weight:500;color:var(--navy)}
+.site-head .brand:hover{text-decoration:none}
+.site-head nav{display:flex;gap:26px;font-size:15.5px;font-weight:500}
+.site-head nav a{color:var(--ink);padding:6px 0;border-bottom:2px solid transparent}
+.site-head nav a:hover{text-decoration:none;border-color:var(--blue)}
+.site-head nav a.current{color:var(--navy);border-color:var(--navy)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:var(--radius);font-weight:600;font-size:15.5px;line-height:1;border:1.5px solid var(--navy);color:var(--navy);background:transparent;cursor:pointer;font-family:var(--sans)}
+.btn:hover{background:var(--surface);text-decoration:none}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.primary:hover{background:#0f3a73}
+.btn svg{width:16px;height:16px}
+
+/* ---------- homepage ---------- */
+.hero{padding:72px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:56px;align-items:end}
+.hero .kicker{font-size:17px;color:var(--muted);margin:0 0 18px}
+.hero h1{margin-bottom:22px}
+.hero .lede{font-size:22px;line-height:1.45;max-width:36ch;margin:0 0 28px;color:var(--ink)}
+.hero .lede b{font-weight:600;color:var(--navy)}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+.portrait{width:220px;height:260px;object-fit:cover;object-position:center top;border-radius:var(--radius);box-shadow:0 1px 0 var(--line),0 12px 32px -18px rgba(0,33,71,.35)}
+
+/* The one memorable element: a reverberant waveform settling into a clean one. */
+.signal{padding:8px 0 56px}
+.signal svg{width:100%;height:auto;display:block}
+.signal .tail{stroke:var(--blue);stroke-width:1.6;fill:none;opacity:.45}
+.signal .clean{stroke:var(--navy);stroke-width:2;fill:none}
+.signal .draw{stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 2.2s cubic-bezier(.6,.05,.3,1) .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.signal .draw{animation:none;stroke-dashoffset:0}}
+.signal .caption{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-top:8px}
+
+.affil{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface)}
+.affil .wrap{display:flex;align-items:center;gap:28px;padding:22px 28px}
+.affil .text{flex:1}
+.affil img{height:30px;width:auto}
+.affil .logo-fallback{font-family:var(--serif);font-size:22px;color:var(--navy);font-weight:500;white-space:nowrap}
+.affil .text{font-size:15.5px;color:var(--muted);line-height:1.5}
+.affil .text b{color:var(--navy);font-weight:600}
+.affil .spacer{flex:1}
+.affil .meta{font-size:15px;color:var(--muted);white-space:nowrap}
+
+section.block{padding:72px 0}
+section.block + section.block{border-top:1px solid var(--line)}
+.block .wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+.block h2{position:sticky;top:88px;align-self:start}
+.block .side-note{font-size:15px;color:var(--muted);margin-top:12px;max-width:22ch}
+
+/* research: one main project, then the rest as a quiet list */
+.project{padding:0 0 30px;margin:0 0 30px;border-bottom:1px solid var(--line)}
+.project:last-child{border:0;margin:0;padding:0}
+.project .when{font-size:15px;color:var(--muted);margin:0 0 6px}
+.project h3{margin-bottom:10px}
+.project p{max-width:66ch;margin-bottom:.7em}
+.project ul{margin:0 0 12px;padding-left:20px;max-width:66ch}
+.project li{margin-bottom:6px}
+.project .links{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:15.5px}
+.project.lead{padding-bottom:36px}
+.project.lead h3{font-size:28px}
+.project .stat{display:inline-block;background:var(--blue-soft);color:var(--navy);padding:2px 9px;border-radius:4px;font-size:14.5px;font-weight:600}
+
+/* publications */
+.pubs{list-style:none;margin:0;padding:0;counter-reset:pub}
+.pubs li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:10px;padding:16px 0;border-bottom:1px solid var(--line)}
+.pubs li:first-child{padding-top:0}
+.pubs li:last-child{border:0}
+.pubs li::before{counter-increment:pub;content:"[" counter(pub) "]";font-family:var(--serif);color:var(--muted);font-size:17px;padding-top:2px}
+.pubs .title{font-weight:600;color:var(--navy);font-size:18px;line-height:1.35}
+.pubs .venue{color:var(--muted);font-size:15.5px;margin:3px 0 6px}
+.pubs .me{font-weight:600}
+.pubs .links{font-size:15px;font-weight:600;display:flex;gap:16px}
+.pubs .status{font-style:italic}
+
+/* timeline-ish lists for experience & education */
+.rows{margin:0;padding:0;list-style:none}
+.rows>li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+.rows>li:first-child{padding-top:0}
+.rows>li:last-child{border:0}
+.rows .when{font-size:15px;color:var(--muted);padding-top:3px}
+.rows h3{font-size:19px;margin-bottom:2px}
+.rows .org{color:var(--muted);font-size:15.5px;margin-bottom:6px}
+.rows p{margin-bottom:.5em;max-width:62ch}
+.rows ul{margin:4px 0 0;padding-left:18px;max-width:62ch}
+
+/* skills as compact groups */
+.skills{margin:0;padding:0;list-style:none}
+.skills li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:18px;padding:10px 0;border-bottom:1px solid var(--line)}
+.skills li:last-child{border:0}
+.skills .k{font-weight:600;color:var(--navy)}
+
+/* cv + contact */
+.cv-card{display:flex;align-items:center;gap:28px;padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);flex-wrap:wrap}
+.cv-card p{margin:0;max-width:48ch}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px 28px;margin:0;padding:0;list-style:none}
+.contact li{font-size:16px}
+.contact small{display:block;color:var(--muted);font-size:14px}
+
+footer.site-foot{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:14.5px}
+footer.site-foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ---------- demo pages (shared) ---------- */
+.page{padding:56px 0 72px}
+.page .crumbs{font-size:15px;color:var(--muted);margin-bottom:28px}
+.page .crumbs a{color:var(--muted)}
+.page h1{font-size:clamp(32px,4.4vw,46px);margin-bottom:12px}
+.page .intro{font-size:19px;line-height:1.5;color:var(--ink);max-width:62ch;margin-bottom:40px}
+.page .meta{color:var(--muted);font-size:16px;margin:0 0 6px}
+
+.demo-list{list-style:none;margin:0;padding:0}
+.demo-list li{display:grid;grid-template-columns:180px minmax(0,1fr);gap:28px;padding:30px 0;border-top:1px solid var(--line)}
+.demo-list li:last-child{border-bottom:1px solid var(--line)}
+.demo-list .venue{color:var(--muted);font-size:15.5px;line-height:1.5}
+.demo-list .venue b{display:block;color:var(--navy);font-weight:600;font-size:16px}
+.demo-list h2{font-size:24px;margin-bottom:8px}
+.demo-list p{max-width:64ch}
+.demo-list .topics{font-size:15px;color:var(--muted);margin-bottom:16px}
+
+/* Paper demo pages keep their own markup; these rules restyle it. */
+.demo .topbar{font-size:15px;margin-bottom:24px}
+.demo .topbar a{color:var(--muted);text-decoration:none}
+.demo .topbar a:hover{color:var(--navy)}
+.demo h1{text-align:left!important;font-size:clamp(30px,4vw,42px)!important;margin:0 0 10px!important}
+.demo h2{font-size:24px}
+.demo h3{font-size:19px}
+.demo .subtitle,.demo .meta,.demo .desc{text-align:left!important;max-width:66ch;color:var(--muted)!important;font-size:16px!important;line-height:1.55}
+.demo .tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-start!important;margin:28px 0 24px!important;padding-bottom:0!important;border-bottom:1px solid var(--line)}
+.demo .tab-button,.demo .tab-btn{font:500 15.5px/1 var(--sans);padding:12px 14px!important;border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;background:transparent!important;color:var(--muted)!important;cursor:pointer;margin-bottom:-1px;transition:color .15s}
+.demo .tab-button:hover,.demo .tab-btn:hover{color:var(--navy)!important;background:transparent!important}
+.demo .tab-button.active,.demo .tab-btn.active{color:var(--navy)!important;border-bottom-color:var(--navy)!important;background:transparent!important}
+.demo .room-tabs{gap:8px!important;margin:4px 0 20px!important}
+.demo .room-tab-btn{font:500 14px/1 var(--sans);padding:7px 14px!important;border:1px solid var(--line)!important;border-radius:999px!important;background:#fff!important;color:var(--ink)!important}
+.demo .room-tab-btn.active{background:var(--navy)!important;border-color:var(--navy)!important;color:#fff!important}
+.demo .section-title{text-align:left!important}
+.demo .sample,.demo .card,.demo .info-card,.demo .config-card,.demo .sample-block,.demo .babble-section{border:1px solid var(--line)!important;border-radius:var(--radius)!important;background:#fff!important;box-shadow:none!important}
+.demo .sample h3,.demo .card h2,.demo .card h3{color:var(--navy)}
+.demo .player-label,.demo .label,.demo .cname,.demo .sample-label{font-weight:600;color:var(--navy)!important}
+.demo audio{width:100%;height:36px}
+.demo .btn,.demo .dl-btn,.demo .button{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:var(--radius);font:600 15px/1 var(--sans);border:1.5px solid var(--navy);color:var(--navy)!important;background:#fff!important;text-decoration:none!important}
+.demo .btn:hover,.demo .dl-btn:hover,.demo .button:hover{background:var(--surface)!important}
+.demo table{border-collapse:collapse;width:100%;font-size:15px}
+.demo th{color:var(--navy);font-weight:600;background:var(--surface)!important}
+.demo th,.demo td{border-color:var(--line)!important}
+.demo .best{color:var(--navy)!important;font-weight:600}
+.demo .badge{font:600 12px/1 var(--sans);padding:3px 8px;border-radius:999px;background:var(--blue-soft)!important;color:var(--navy)!important;border:0!important}
+.demo .hint,.demo .small,.demo .room-note,.demo .na-note{color:var(--muted)!important}
+.demo footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:14.5px;color:var(--muted)}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;gap:32px}
+  .portrait{width:140px;height:166px;order:-1}
+  .block .wrap{grid-template-columns:1fr;gap:24px}
+  .block h2{position:static}
+  .block .side-note{max-width:none}
+  .demo-list li{grid-template-columns:1fr;gap:10px}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .wrap{padding:0 20px}
+  .site-head .wrap{height:auto;padding:12px 20px;flex-direction:column;align-items:flex-start;gap:8px}
+  .site-head nav{gap:18px;flex-wrap:wrap}
+  .hero{padding:44px 0 24px}
+  .hero .lede{font-size:19px}
+  section.block{padding:48px 0}
+  .rows li,.skills li{grid-template-columns:1fr;gap:4px}
+  .pubs li{grid-template-columns:32px 1fr}
+  .affil .wrap{gap:16px;flex-wrap:wrap}
+}

@@ -1,6 +1,70 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Research Demonstrations | Yuxi Zhang</title><style>
-*{box-sizing:border-box}body{margin:0;color:#26364a;background:#fff;font:16px/1.7 "Helvetica Neue",Helvetica,Arial,sans-serif}.container{max-width:920px;margin:auto;padding:38px 26px 70px}a{color:#205b98;text-decoration:none}a:hover{text-decoration:underline}.back{font-size:14px}h1{font-size:35px;margin:36px 0 8px;color:#182d44}h2{font-size:22px;line-height:1.4;margin:8px 0;color:#182d44}.intro{color:#5c6a7b;max-width:760px;margin-bottom:32px}.card{padding:26px 28px;border:1px solid #e1e7ee;border-radius:9px;margin:20px 0}.meta{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#386b9e}.paper{color:#5c6a7b;font-size:14px;margin:0 0 14px}.card p{margin:10px 0 15px}.topics{font-size:13px;color:#57697e;margin-bottom:17px}.button{display:inline-block;background:#183b62;color:white;padding:9px 16px;border-radius:5px;font-size:14px;font-weight:650}.button:hover{color:white;text-decoration:none;background:#285785}footer{margin-top:35px;padding-top:20px;border-top:1px solid #e1e7ee;font-size:13px;color:#5c6a7b}@media(max-width:600px){.container{padding:25px 18px 55px}.card{padding:20px}h1{font-size:29px}}
-</style></head><body><main class="container"><a class="back" href="../index.html">← Back to Home</a><h1>Research Demonstrations</h1><p class="intro">Audio examples and companion materials from research on single-channel speech dereverberation, deep internal learning, acoustic mismatch, and downstream speech recognition.</p>
-<section class="card"><div class="meta">Conference Paper · EUSIPCO 2025</div><h2>Deep Internal Learning for Single-Channel Speech Dereverberation</h2><p class="paper">European Signal Processing Conference (EUSIPCO), 2025</p><p>This work investigates utterance-specific deep internal learning for speech dereverberation using training pairs constructed from the observed signal itself, without external training data or pretrained models. The audio demonstrations compare reverberant speech, WPE, and DIL variants across different reverberation-time conditions.</p><div class="topics">Audio examples · Reverberation-time conditions · WPE and DIL comparisons</div><a class="button" href="./papers/eusipco2024-dereverb/">Open Demo</a></section>
-<section class="card"><div class="meta">Journal Manuscript · Under Major Revision</div><h2>A Study of Deep Internal Learning for Speech Dereverberation</h2><p class="paper">IEEE Signal Processing Open</p><p>This extended study examines deep internal learning under matched and mismatched room impulse response conditions, including synthetic and measured RIRs. The companion materials include audio comparisons from different acoustic environments, details of evaluation datasets, and experimental configurations.</p><div class="topics">Audio comparisons · Acoustic mismatch · Measured room responses</div><a class="button" href="./papers/taslp2025-dil/">Open Demo</a></section>
-<section class="card"><div class="meta">Conference Paper · IWAENC 2026</div><h2>Dereverberation Using Deep Internal Learning: Speech Enhancement and ASR Evaluation</h2><p class="paper">International Workshop on Acoustic Signal Enhancement (IWAENC), 2026</p><p>This paper extends our previous work on deep internal learning for single-channel speech dereverberation by examining its impact on downstream automatic speech recognition (ASR). Using LibriSpeech speech convolved with measured room impulse responses, it evaluates both signal-level and recognition metrics under matched and mismatched acoustic conditions, investigating when improvements in speech enhancement translate into better ASR performance.</p><div class="topics">Speech comparisons · Acoustic mismatch analysis · ASR evaluation</div><a class="button" href="./papers/iwanec2026/">Open Demo</a></section><footer>Yuxi Zhang · <a href="../index.html">Academic homepage</a></footer></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audio demos — Yuxi Zhang</title>
+<meta name="description" content="Audio examples and companion materials for Yuxi Zhang's research on deep internal learning for speech dereverberation.">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../">Yuxi Zhang</a>
+    <nav aria-label="Sections">
+      <a href="../#research">Research</a>
+      <a href="../#publications">Publications</a>
+      <a href="../#experience">Experience</a>
+      <a href="./" class="current">Audio demos</a>
+      <a href="../cv_yuxi_zhang.pdf">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <h1>Audio demos</h1>
+    <p class="intro">Listening examples and companion materials for single-channel speech dereverberation with deep internal learning (DIL): acoustic mismatch, noisy conditions and downstream speech recognition.</p>
+
+    <ul class="demo-list">
+      <li>
+        <div class="venue"><b>IWAENC 2026</b>International Workshop on Acoustic Signal Enhancement</div>
+        <div>
+          <h2>Dereverberation Using Deep Internal Learning: Speech Enhancement and ASR Evaluation</h2>
+          <p>Extends DIL to downstream automatic speech recognition (ASR). LibriSpeech convolved with measured room impulse responses, evaluated on signal-level and recognition metrics under matched and mismatched acoustics, asking when enhancement gains become recognition gains.</p>
+          <p class="topics">Three rooms · synthetic and measured mismatch · babble noise at 10 dB SNR · reproducibility index</p>
+          <a class="btn" href="./papers/iwanec2026/">Open demo</a>
+        </div>
+      </li>
+      <li>
+        <div class="venue"><b>EUSIPCO 2025</b>European Signal Processing Conference</div>
+        <div>
+          <h2>Deep Internal Learning for Single-Channel Speech Dereverberation</h2>
+          <p>Utterance-specific DIL trained on pairs constructed from the observed signal alone, with no external data or pretrained model. Compares reverberant speech, WPE (weighted prediction error) and DIL variants across three reverberation times.</p>
+          <p class="topics">T60 = 204 / 513 / 972 ms · oracle vs realistic RIR · nine samples</p>
+          <a class="btn" href="./papers/eusipco2024-dereverb/">Open demo</a>
+        </div>
+      </li>
+      <li>
+        <div class="venue"><b>Journal manuscript</b>IEEE Signal Processing Open · under major revision</div>
+        <div>
+          <h2>Deep Internal Learning for Speech Dereverberation</h2>
+          <p>The extended study: DIL under matched and mismatched room impulse responses, synthetic and measured. Companion materials include audio from three ACE rooms, the dataset file lists, pilot MUSHRA listening-test results and cross-room configurations.</p>
+          <p class="topics">Audio comparisons · MUSHRA data · dataset lists · downloads</p>
+          <a class="btn" href="./papers/taslp2025-dil/">Open companion page</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Yuxi Zhang</span>
+    <span><a href="../">Home</a> · <a href="https://github.com/YUXIZ0826">GitHub</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
